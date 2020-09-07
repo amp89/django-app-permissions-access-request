@@ -1,0 +1,30 @@
+{% extends 'app_permissions_access_base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block header %}
+Approval List
+{% endblock %}
+
+{% block content %}
+{% if requests %}
+<ul class="list-group">
+
+    {% for request_obj in requests %}
+        <li class="list-group-item">
+            {{request_obj.user.username}} | 
+            {{request_obj.group.name | title}}
+            <a class="btn btn-primary" href="{% url 'django_app_permissions_access_request.approval' %}?request_id={{request_obj.id}}">View Request</a>
+            <br><br>
+        </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+There are no pending requests at this time
+{% endif %}
+
+
+{% endblock %}
+

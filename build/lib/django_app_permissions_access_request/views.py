@@ -30,13 +30,13 @@ class RequestListView(LoginRequiredMixin, View):
                 "access":access_status,
             })
         # TODO: find a better solutin for user_is_admin
-        return render(request, "request_list.html", {"group_list":group_list,"site_home":reverse(settings.SITE_HOME_URL_NAME),"user_is_admin":request.user.groups.filter(name="django_app_permissions_access_request").exists()})
+        return render(request, "app_permissions_access_request_list.html", {"group_list":group_list,"site_home":reverse(settings.SITE_HOME_URL_NAME),"user_is_admin":request.user.groups.filter(name="django_app_permissions_access_request").exists()})
 
 class RequestView(LoginRequiredMixin, View):
     def get(self,request, *args, **kwargs):
         group_id = request.GET["group_id"]
         group = Group.objects.get(id=group_id)
-        return render(request, "request.html", {"group":group,"site_home":reverse(settings.SITE_HOME_URL_NAME),"user_is_admin":request.user.groups.filter(name="django_app_permissions_access_request").exists()})
+        return render(request, "app_permissions_access_request.html", {"group":group,"site_home":reverse(settings.SITE_HOME_URL_NAME),"user_is_admin":request.user.groups.filter(name="django_app_permissions_access_request").exists()})
 
     def post(self,request, *args, **kwargs):
         group_id = request.GET["group_id"]
@@ -56,13 +56,13 @@ class RequestView(LoginRequiredMixin, View):
 class ApprovalsView(AppAuthView):
     def get(self,request, *args, **kwargs):
         all_requests = Request.objects.all()
-        return render(request, "approval_list.html", {"requests":all_requests,"site_home":reverse(settings.SITE_HOME_URL_NAME),"user_is_admin":request.user.groups.filter(name="django_app_permissions_access_request").exists()})
+        return render(request, "app_permissions_access_approval_list.html", {"requests":all_requests,"site_home":reverse(settings.SITE_HOME_URL_NAME),"user_is_admin":request.user.groups.filter(name="django_app_permissions_access_request").exists()})
 
 class ApprovalView(AppAuthView):
     def get(self,request, *args, **kwargs):
         request_id = request.GET["request_id"]
         request_obj = Request.objects.get(id=request_id)
-        return render(request, "approval.html", {"request_obj":request_obj,"site_home":reverse(settings.SITE_HOME_URL_NAME),"user_is_admin":request.user.groups.filter(name="django_app_permissions_access_request").exists()})
+        return render(request, "app_permissions_access_approval.html", {"request_obj":request_obj,"site_home":reverse(settings.SITE_HOME_URL_NAME),"user_is_admin":request.user.groups.filter(name="django_app_permissions_access_request").exists()})
 
     def post(self,request, *args, **kwargs):
         request_id = request.GET["request_id"]

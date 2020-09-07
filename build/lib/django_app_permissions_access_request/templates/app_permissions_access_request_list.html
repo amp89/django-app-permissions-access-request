@@ -1,0 +1,26 @@
+{% extends 'app_permissions_access_base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block header %}
+Request List
+{% endblock %}
+
+{% block content %}
+<ul class="list-group">
+
+        {% for group in group_list %}
+            <li class="list-group-item">
+                    {{group.name}}
+                {% if not group.access %}  
+                    <a class="btn btn-primary" href="{% url 'django_app_permissions_access_request.request_access'%}?group_id={{group.id}}">Request Access</a>
+                {% else %}
+                    | {{group.access}}
+                {% endif %}
+            </li>            
+        {% endfor %}
+
+</ul>
+{% endblock %}
+

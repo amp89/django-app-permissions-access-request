@@ -1,0 +1,36 @@
+{% extends 'app_permissions_access_base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block header %}
+Approval
+{% endblock %}
+
+{% block content %}
+
+    <div class="text-center">
+
+        <span style="font-size:1.3em">"{{request_obj.user.username}}" is requesting access to "{{request_obj.group.name | title}}".</span><br>
+        <h5>User info</h5>
+        First: {{request_obj.user.first_name}}<br>
+        Last: {{request_obj.user.last_name}}<br>
+        Email: {{request_obj.user.email}}<br>
+        Acces Justification: <p>{{request_obj.description}}</p><br>
+
+        <form method="POST" action="{% url 'django_app_permissions_access_request.approval' %}?request_id={{request_obj.id}}">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" value="Approve">
+        </form>
+        <br>
+        <form method="POST" action="{% url 'django_app_permissions_access_request.deny' %}?request_id={{request_obj.id}}">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Reject">
+        </form>
+
+
+    </div>
+
+{% endblock %}
+
+

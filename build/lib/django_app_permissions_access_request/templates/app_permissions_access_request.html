@@ -1,0 +1,29 @@
+{% extends 'app_permissions_access_base.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block header %}
+Request
+{% endblock %}
+
+{% block content %}
+    <div class="text-center">
+        <form method="post" action="{% url 'django_app_permissions_access_request.request_access' %}?group_id={{group.id}}">
+            {% csrf_token %}
+            <div>
+                You do not currently have access to "{{group.name}}". Request Access to "{{group.name}}"?
+            </div>
+            <div>
+                <label for="description">Access Reason:</label>
+            </div>
+            <div>
+                <textarea id="description" name="description" rows="4" cols="50" maxlength="5000"></textarea>
+            </div>
+            
+            
+            <input type="submit" class="btn btn-primary" value="Request Now">
+        </form>
+    </div>
+{% endblock %}
+
