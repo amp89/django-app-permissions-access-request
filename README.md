@@ -6,6 +6,7 @@ UI for handling app permissions defined in the Django App Permissions package (h
 `pip install --upgrade django-app-permissions-access-request`
 
 ## Configure
+NOTE: Make sure the base django stuff is migrated before adding this to the project!
 `settings.py`
 1. Must have `Django App Permissions` installed and setup
 2. In `ACCESS_CONTROLLED_INSTALLED_APPS`, add `django_app_permissions_access_request`.  __IT MUST GO IN `ACCESS CONTROLLED` INSTALLED APPS, OR ANYONE WILL BE ABLE TO CHANGE THEIR OWN PERMISSIONS!__
