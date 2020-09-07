@@ -1,0 +1,4 @@
+django
+djangorestframework
+django-drf-advanced-token
+django-app-permissions
