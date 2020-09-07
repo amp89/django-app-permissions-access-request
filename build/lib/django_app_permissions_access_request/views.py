@@ -41,6 +41,9 @@ class RequestView(LoginRequiredMixin, View):
     def post(self,request, *args, **kwargs):
         group_id = request.GET["group_id"]
         description = request.POST.get("description","")
+        if Request.objects.filter(user=request.user, group=Group.objects.get(id=group_id)).exists():
+            messages.add_message(request, messages.ERROR, "You already have an open request for this app.")
+            return redirect(reverse(settings.SITE_HOME_URL_NAME))
         try:
             Request.objects.create(user=request.user, group=Group.objects.get(id=group_id),description=description)
             messages.add_message(request, messages.SUCCESS, 'Request Submitted!')

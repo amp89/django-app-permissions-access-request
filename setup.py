@@ -7,9 +7,9 @@ from setuptools import (
 
 setup(
     name='django-app-permissions-access-request',
-    version='0.0.3',
+    version='0.0.5',
     url='https://github.com/amp89/django-app-permissions-access-request',
-    download_url="https://github.com/amp89/django-app-permissions-access-request/blob/master/dist/django-app-permissions-access-request-0.0.3.tar.gz",
+    download_url="https://github.com/amp89/django-app-permissions-access-request/blob/master/dist/django-app-permissions-access-request-0.0.5.tar.gz",
     license='MIT',
     description='App level authentication management for django, with access requests and approvals',
     long_description=open('README.rst', 'r', encoding='utf-8').read(),
